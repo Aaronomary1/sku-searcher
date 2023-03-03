@@ -4,10 +4,10 @@
 	<title>SKU Searcher</title>
 </head>
 <body>
-	<h1>SKU Search</h1>
-	<form action="https://www.google.com/search" method="GET">
-		<label for="search">INPUT YOUR SKU:</label>
-		<input type="text" name="q" id="search" onsubmit="this.value='site:alhannah.com '+this.value;">
+	<h1>SKU Searcher</h1>
+	<form action="https://www.google.com/search" method="GET" onsubmit="document.getElementById('search').value = 'site:alhannah.com ' + document.getElementById('search').value;">
+		<label for="search">Enter SKU:</label>
+		<input type="text" name="q" id="search">
 		<input type="submit" value="Search">
 	</form>
 </body>
