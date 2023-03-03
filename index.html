@@ -1,13 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SKU Searcher</title>
+	<title>Alhannah Product Search</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			height: 95vh;
+			place-content: center;
+			background: #005799;
+		}
+
+		h1 {
+			color: white;
+		}
+
+		form {
+			/* border-radius: 10px; */ /* make the corners of the input rounded */
+			/* font-size: 1.2rem; */ /* increase the font size to make the input larger */
+			/* font-weight: bold; */ /* make the text in the input element bold */
+			/* padding: 10px; */ /* add some padding around the input element */
+			/* border: 2px solid #ccc; */ /* add a border to the input element */
+			/* transition: border-color 0.3s ease-in-out; */ /* add a transition effect to the border color */
+		}
+
+		label {
+			color: white;
+		}
+
+		input[type="text"] {
+			border-radius: 10px; /* make the corners of the input rounded */
+			font-size: 1.2rem; /* increase the font size to make the input larger */
+			font-weight: bold; /* make the text in the input element bold */
+			padding: 10px; /* add some padding around the input element */
+			border: 2px solid #ccc; /* add a border to the input element */
+			transition: border-color 0.3s ease-in-out; /* add a transition effect to the border color */
+		}
+
+		input[type="submit"] {
+			border-radius: 10px; /* make the corners of the button rounded */
+			font-size: 1.2rem; /* increase the font size to make the button larger */
+			font-weight: bold; /* make the text in the button element bold */
+			padding: 10px; /* add some padding around the button element */
+			border: none; /* remove the default border */
+			background-color: #7e8153; /* set the background color of the button */
+			color: #fff; /* set the text color of the button */
+			transition: background-color 0.3s ease-in-out; /* add a transition effect to the background color */
+		}
+	</style>
 </head>
 <body>
-	<h1>SKU Searcher</h1>
+	<h1>ALHANNAH PRODUCT SEARCH</h1>
 	<form action="https://www.google.com/search" method="GET" onsubmit="document.getElementById('search').value = 'site:alhannah.com ' + document.getElementById('search').value;">
-		<label for="search">Enter SKU:</label>
-		<input type="text" name="q" id="search">
+		<label for="search"></label>
+		<input type="text" name="q" id="search" placeholder="Product ID">
 		<input type="submit" value="Search">
 	</form>
 </body>
