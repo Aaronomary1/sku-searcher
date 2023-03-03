@@ -5,22 +5,30 @@
 	<script type="text/javascript">
 		function searchGoogle() {
 			// Get the user input
-			var query = document.getElementById("searchQuery").value;		// Construct the URL to the server-side script
-		var scriptUrl = "/search.php?q=" + encodeURIComponent(query);
+			var query = document.getElementById("searchQuery").value;
 
-		// Use an AJAX request to fetch the search results
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", scriptUrl, true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				// Update the paragraph tag with the search result
-				var resultContainer = document.getElementById("searchResult");
-				resultContainer.innerHTML = xhr.responseText;
-			}
-		};
-		xhr.send();
-	}
-</script>
+			// Construct the Google search URL
+			var googleUrl = "https://www.google.com/search?q=" + encodeURIComponent(query);
+
+			// Use an AJAX request to fetch the search results
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", googleUrl, true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					// Parse the HTML response to find the first search result
+					var parser = new DOMParser();
+					var doc = parser.parseFromString(xhr.responseText, "text/html");
+					var result = doc.querySelector("div.g > div > div.rc > div.r > a");
+
+					// Update the paragraph tag with the first search result
+					var resultContainer = document.getElementById("searchResult");
+					resultContainer.textContent = result.textContent;
+					resultContainer.setAttribute("href", result.href);
+				}
+			};
+			xhr.send();
+		}
+	</script>
 </head>
 <body>
 	<h1>Google Search</h1>
@@ -28,6 +36,6 @@
 		<input type="text" id="searchQuery" placeholder="Search Google">
 		<button type="submit">Search</button>
 	</form>
-	<p id="searchResult"></p>
+	<p><a id="searchResult"></a></p>
 </body>
 </html>
