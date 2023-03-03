@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Search Google</title>
+    <title>Google Search Redirect</title>
   </head>
   <body>
-    <h1>Search Google</h1>
-    <form action="https://www.google.com/search" method="get">
-      <label for="query">Search:</label>
-      <input type="text" id="query" name="q" required>
-      <button type="submit">Search</button>
+    <h1>Google Search Redirect</h1>
+    <form onsubmit="return searchGoogle(this.searchQuery.value);">
+      <label for="searchQuery">Enter your search query:</label>
+      <input type="text" id="searchQuery" name="searchQuery">
+      <input type="submit" value="Search">
     </form>
+
+    <script>
+      function searchGoogle(query) {
+        var url = "https://www.google.com/search?q=" + encodeURIComponent(query);
+        fetch(url)
+          .then(response => response.text())
+          .then(data => {
+            var parser = new DOMParser();
+            var htmlDoc = parser.parseFromString(data, "text/html");
+            var firstResult = htmlDoc.querySelector("div.g > div.rc > div.r > a");
+            if (firstResult) {
+              window.location.href = firstResult.href;
+            } else {
+              alert("No results found");
+            }
+          })
+          .catch(error => {
+            console.error(error);
+            alert("An error occurred while searching Google");
+          });
+        return false;
+      }
+    </script>
   </body>
 </html>
