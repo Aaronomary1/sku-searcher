@@ -6,7 +6,7 @@
 <body>
 	<form action="https://www.google.com/search" method="GET">
 		<label for="search">Search:</label>
-		<input type="text" name="q" id="search">
+		<input type="text" name="q" id="search" onsubmit="this.value='site:alhannah.com '+this.value;">
 		<input type="submit" value="Search">
 	</form>
 </body>
