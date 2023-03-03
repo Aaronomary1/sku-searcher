@@ -4,10 +4,16 @@
 	<title>Google Search</title>
 </head>
 <body>
-	<form action="https://www.google.com/search" method="GET">
+	<form>
 		<label for="search">Search:</label>
-		<input type="text" name="q" id="search">
-		<input type="submit" value="Search">
+		<input type="text" id="search">
+		<input type="button" value="Search" onclick="search()">
 	</form>
+	<script>
+		function search() {
+			var query = document.getElementById('search').value;
+			window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query) + '&btnI';
+		}
+	</script>
 </body>
 </html>
